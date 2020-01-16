@@ -30,6 +30,8 @@ build/
 ### VS Code ###
 .vscode/
 
-doc/template.sql
-doc/template.xls
-doc/统一数据库表结构_卡_V1.9.xlsx
+#doc/template.sql
+#doc/template.xls
+#doc/统一数据库表结构_卡_V1.9.xlsx
+
+target
