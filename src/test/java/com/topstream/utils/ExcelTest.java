@@ -11,7 +11,8 @@ class ExcelTest {
 
     @Test
     void contextLoads() {
-        Excel2SQL.printSQL("test.xls");
+        //Excel2SQL.printSQL("doc/template.xls");
+        Excel2SQL.printSQL("doc/excampleFile.xls");
     }
 
 }
