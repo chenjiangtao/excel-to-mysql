@@ -13,9 +13,16 @@ import java.util.Map;
 class ExcelTest {
 
     @Test
-    void contextLoads() {
+    void card() {
         //Excel2SQL.printSQL("doc/template.xls");
-        Excel2SQL.printSQL("doc/template.xls");
+        Excel2SQL.printSQL("doc/template-card.xls");
+    }
+
+
+    @Test
+    void coupon() {
+        //Excel2SQL.printSQL("doc/template.xls");
+        Excel2SQL.printSQL("doc/template-coupon.xls");
     }
 
     @Test

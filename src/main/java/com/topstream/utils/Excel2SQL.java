@@ -125,7 +125,7 @@ public class Excel2SQL {
                 //在excel中做固定，不要在程序中选择
                 //第一列：列名，第二列类型，第三列描述....
                 //字段ID	数据类型	可空	默认值	字段名称	字段补充说明	数据样例
-                String clnName = columList.get(columStart + 1).toString().trim();//字段ID
+                String clnName = columList.get(columStart + 1).toString().trim().replace(" ","");//字段ID
                 String type = columList.get(columStart + 2).toString().trim();//数据类型
                 String isNull = columList.get(columStart + 3).toString().trim();//可空
                 String comment = columList.get(columStart + 5).toString().trim();//字段名（中文名称）
@@ -149,24 +149,24 @@ public class Excel2SQL {
                         .append("',\n");
 
                 //组将insert
-                //if (!clnName.equals("id")
-                //&& !clnName.equals("import_batch_no")
-                //&& !clnName.equals("import_time")) { //跳过id,import_batch_no，import_time
-                insertC.append(clnName)
-                        .append(",");
-                insertV.append(type.contains("int") ? "" : "\"")
-                        .append(type.contains("int") ? 0 : "")
-                        .append(type.contains("char") ? "testval" + j : "")
-                        .append(type.contains("date") ? "2019-01-16" : "")
-                        .append(type.contains("int") ? "" : "\"")
-                        .append(",");
-                //t_card_info.put("l_card_no", 0);
-                if (!isNull.equals("NOT NULL")) {
-                    nullMap.append(tableName + ".put(\"" + clnName + "\", 0);\n");
+                if (!clnName.equals("id")
+                        && !clnName.equals("import_batch_no")
+                        && !clnName.equals("import_time")) { //跳过id,import_batch_no，import_time
+                    //组合列
+                    insertC.append(clnName)
+                            .append(",");
+                    //组合值，只能处理两种：加引号、不加
+                    insertV.append(type.contains("int") || type.contains("decimal") ? "" : "\"")//如果是数值型，不加引号；否则加引号开始
+                            .append(type.contains("int") || type.contains("decimal") ? 0 : "")//如果是数值型,用0
+                            .append(type.contains("char") ? "testval" + j : "")
+                            .append(type.contains("date") ? "2019-01-16" : "")
+                            .append(type.contains("int") || type.contains("decimal") ? "" : "\"")//如果是数值型，不加引号；否则加引号结束
+                            .append(",");
+                    //t_card_info.put("l_card_no", 0);
+                    if (!isNull.equals("NOT NULL")) {
+                        nullMap.append(tableName + ".put(\"" + clnName + "\", 0);\n");
+                    }
                 }
-                //}
-
-
             }
 
 
@@ -181,11 +181,11 @@ public class Excel2SQL {
 
 
             //******************打印建表语句******************
-            //System.out.println(table);
+            System.out.println(table);
 
 
             //******************打印插入语句******************
-            String replace = insertV.toString().replace("\"\"", "");
+            //String replace = insertV.toString().replace("\"\"", "");
             //String ins = "insert into " + tableName + " (" + insertC.substring(0, insertC.length() - 1) + ")values(" + replace.substring(0, replace.length() - 1) + ");";
             //System.out.println(ins);
 
@@ -197,7 +197,7 @@ public class Excel2SQL {
         }
         //叠加的，所以放外面
         //******************打印CleanlingConf类的字段+描述******************
-        System.out.println(JSONObject.toJSON(clnCommentMap));
+        //System.out.println(JSONObject.toJSON(clnCommentMap));
 
     }
 
@@ -208,6 +208,7 @@ public class Excel2SQL {
      * @param table
      * @return
      */
+    @Deprecated
     private static String sql4Hive(String table) {
         String s = " DROP TABLE IF EXISTS `t_table1`;\n" +
                 "    CREATE TABLE `t_table1` (\n" +
