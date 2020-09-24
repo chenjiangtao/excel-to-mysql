@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.topstream</groupId>
-	<artifactId>utils</artifactId>
+	<artifactId>excel-to-mysql</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>utils</name>
 	<description>Demo project for Spring Boot</description>

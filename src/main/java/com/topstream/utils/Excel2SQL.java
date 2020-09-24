@@ -181,7 +181,7 @@ public class Excel2SQL {
 
 
             //******************打印建表语句******************
-            System.out.println(table);
+            //System.out.println(table);
 
 
             //******************打印插入语句******************
@@ -190,8 +190,8 @@ public class Excel2SQL {
             //System.out.println(ins);
 
             //******************打印CleanlingConf类的字段******************
-            //System.out.println("private static String " + tableName + "_clns=\"" + insertC.substring(0, insertC.length() - 1) + "\";");
-            //System.out.println(nullMap);
+            System.out.println("private static String " + tableName + "_clns=\"" + insertC.substring(0, insertC.length() - 1) + "\";");
+            System.out.println(nullMap);
 
 
         }

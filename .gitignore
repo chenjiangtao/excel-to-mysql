@@ -30,5 +30,9 @@ build/
 ### VS Code ###
 .vscode/
 
-doc/*
+doc/Starbucks Data Sync 统一数据库表结构_劵_V1.9.xlsx
+doc/Starbucks Data Sync 统一数据库表结构_卡_V2.9.xlsx
+doc/template-card.xls
+doc/template.sql
+doc/template-coupon.xls
 
